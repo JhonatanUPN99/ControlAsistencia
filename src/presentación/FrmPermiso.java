@@ -106,7 +106,7 @@ public class FrmPermiso extends JFrame {
 	// Modelo de la tabla
 	modeloTabla = new DefaultTableModel();
 
-	modeloTabla.addColumn("ID");
+	modeloTabla.addColumn("ID Permiso");
 	modeloTabla.addColumn("Colaborador");
 	modeloTabla.addColumn("Fecha");
 	modeloTabla.addColumn("Motivo");

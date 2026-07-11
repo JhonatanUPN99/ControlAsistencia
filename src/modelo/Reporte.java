@@ -137,7 +137,7 @@ public class Reporte {
 
         return "========================================\n" +
                "ID Reporte      : " + idReporte + "\n" +
-               "Colaborador     : " + colaborador.obtenerNombreCompleto()+
+               "Colaborador     : " + colaborador.obtenerNombreCompleto() + "\n" +
                "Asistencias     : " + totalAsistencias + "\n" +
                "Tardanzas       : " + totalTardanzas + "\n" +
                "Inasistencias   : " + totalInasistencias + "\n" +

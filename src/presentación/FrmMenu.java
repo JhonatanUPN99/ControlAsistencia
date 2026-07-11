@@ -17,14 +17,15 @@ public class FrmMenu extends JFrame {
     private JButton btnAsistencia;
     private JButton btnPermisos;
     private JButton btnCerrarSesion;
-
+    private JButton btnReportes;
+    
     public FrmMenu() {
 
         // =========================
         // CONFIGURACIÓN GENERAL
         // =========================
         setTitle("Menú Principal");
-        setSize(400, 300);
+        setSize(400, 350);
         setLayout(null);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,17 +57,44 @@ public class FrmMenu extends JFrame {
         btnPermisos = new JButton("Permisos");
         btnPermisos.setBounds(120, 150, 150, 30);
         add(btnPermisos);
+        
+        // =========================
+        // BOTÓN REPORTES
+        // =========================
+
+        btnReportes = new JButton("Reportes");
+        btnReportes.setBounds(120,190,150,30);
+        add(btnReportes);
 
         // =========================
         // BOTÓN CERRAR SESIÓN
         // =========================
         btnCerrarSesion = new JButton("Cerrar Sesión");
-        btnCerrarSesion.setBounds(120, 200, 150, 30);
+        btnCerrarSesion.setBounds(120, 230, 150, 30);
         add(btnCerrarSesion);
 
         // =========================
         // ACCIONES
         // =========================
+        
+        btnReportes.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+                FrmReporte reporte =
+                        new FrmReporte();
+
+
+                reporte.setVisible(true);
+
+
+                dispose();
+
+            }
+
+        });
 
         btnColaboradores.addActionListener(new ActionListener() {
 
