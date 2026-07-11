@@ -3,7 +3,7 @@ package negocio;
 import java.util.List;
 
 import modelo.Colaborador;
-import persistencia.ArchivoColaborador;
+import dao.ColaboradorDAO;
 
 /**
  * Clase encargada de gestionar la lógica de negocio
@@ -11,18 +11,21 @@ import persistencia.ArchivoColaborador;
  */
 public class ControlColaborador {
 
-    // Acceso a la persistencia de colaboradores.
-    private ArchivoColaborador archivoColaborador;
-
+	// Acceso a base de datos MySQL
+	private ColaboradorDAO colaboradorDAO;
     /**
      * Constructor.
      * Inicializa la capa de persistencia.
      */
-    public ControlColaborador() {
+	/**
+	 * Constructor.
+	 * Inicializa el acceso al DAO de colaboradores.
+	 */
+	public ControlColaborador() {
 
-        archivoColaborador = new ArchivoColaborador();
+	    colaboradorDAO = new ColaboradorDAO();
 
-    }
+	}
 
     /**
      * Registra un nuevo colaborador.
@@ -49,23 +52,24 @@ public class ControlColaborador {
 
         }
 
-        // Crear el objeto colaborador.
-        Colaborador colaborador = new Colaborador(
+     // Crear colaborador sin enviar ID.
+     // MySQL lo generará automáticamente mediante AUTO_INCREMENT.
+     Colaborador colaborador = new Colaborador(
 
-                archivoColaborador.generarId(),
+             0,
 
-                nombres,
+             nombres,
 
-                apellidos,
+             apellidos,
 
-                cargo,
+             cargo,
 
-                area
+             area
 
-        );
+     );
 
-        // Guardar en el archivo CSV.
-        archivoColaborador.guardar(colaborador);
+        // Guardar colaborador en MySQL mediante DAO.
+        colaboradorDAO.insertar(colaborador);
 
         return true;
 
@@ -78,7 +82,7 @@ public class ControlColaborador {
      */
     public List<Colaborador> listarColaboradores() {
 
-        return archivoColaborador.leerTodos();
+    	return colaboradorDAO.listar();
 
     }
 
@@ -90,7 +94,7 @@ public class ControlColaborador {
      */
     public Colaborador buscarPorId(int id) {
 
-        return archivoColaborador.buscarPorId(id);
+        return colaboradorDAO.buscarPorId(id);
 
     }
 
@@ -102,7 +106,7 @@ public class ControlColaborador {
      */
     public void eliminarColaborador(int id) {
 
-        archivoColaborador.eliminar(id);
+    	colaboradorDAO.eliminar(id);
 
     }
     
@@ -118,7 +122,7 @@ public class ControlColaborador {
 
         // Verificar que exista el colaborador.
         Colaborador colaborador =
-                archivoColaborador.buscarPorId(id);
+        		colaboradorDAO.buscarPorId(id);
 
         if (colaborador == null) {
 
@@ -133,7 +137,7 @@ public class ControlColaborador {
         colaborador.setArea(area);
 
         // Guardar los cambios.
-        archivoColaborador.actualizar(colaborador);
+        colaboradorDAO.actualizar(colaborador);
 
         return true;
 
@@ -145,7 +149,7 @@ public class ControlColaborador {
      */
     public Colaborador obtenerColaborador(int id) {
 
-        return archivoColaborador.buscarPorId(id);
+        return colaboradorDAO.buscarPorId(id);
 
     }
 
