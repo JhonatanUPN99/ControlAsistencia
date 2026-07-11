@@ -64,7 +64,7 @@ public class ControlPermiso {
         // Crear el objeto permiso con estado inicial PENDIENTE.
         Permiso permiso = new Permiso(
 
-                generarId(),
+        		archivoPermiso.generarId(),
 
                 fechaSolicitud,
 
@@ -153,35 +153,24 @@ public class ControlPermiso {
         return archivoPermiso.leerTodos();
 
     }
-
     /**
-     * Genera automáticamente el siguiente ID disponible.
+     * Actualiza un permiso existente.
      *
-     * @return siguiente ID consecutivo.
+     * @param permiso Permiso actualizado.
      */
-    private int generarId() {
+    public void actualizar(Permiso permiso) {
 
-        List<Permiso> lista = archivoPermiso.leerTodos();
+        archivoPermiso.actualizar(permiso);
 
-        if (lista.isEmpty()) {
+    }
+    /**
+     * Elimina un permiso existente.
+     *
+     * @param id Identificador del permiso.
+     */
+    public void eliminar(int id) {
 
-            return 1;
-
-        }
-
-        int mayorId = 0;
-
-        for (Permiso permiso : lista) {
-
-            if (permiso.getIdPermiso() > mayorId) {
-
-                mayorId = permiso.getIdPermiso();
-
-            }
-
-        }
-
-        return mayorId + 1;
+        archivoPermiso.eliminar(id);
 
     }
 

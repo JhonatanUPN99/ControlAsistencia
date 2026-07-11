@@ -1,3 +1,4 @@
+package presentación;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -68,34 +69,48 @@ public class FrmMenu extends JFrame {
         // =========================
 
         btnColaboradores.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // Abrir módulo colaboradores
-                JOptionPane.showMessageDialog(null,
-                        "Módulo de Colaboradores (por implementar)");
+                FrmColaborador ventana = new FrmColaborador();
+
+                ventana.setVisible(true);
+
+                dispose();
 
             }
+
         });
 
         btnAsistencia.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JOptionPane.showMessageDialog(null,
-                        "Módulo de Asistencia (por implementar)");
+                FrmAsistencia ventana = new FrmAsistencia();
+
+                ventana.setVisible(true);
+
+                dispose();
 
             }
+
         });
 
         btnPermisos.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JOptionPane.showMessageDialog(null,
-                        "Módulo de Permisos (por implementar)");
+                FrmPermiso ventana = new FrmPermiso();
+
+                ventana.setVisible(true);
+
+                dispose();
 
             }
+
         });
 
         btnCerrarSesion.addActionListener(new ActionListener() {

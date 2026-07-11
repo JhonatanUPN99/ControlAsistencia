@@ -208,5 +208,39 @@ public class ArchivoPermiso {
         }
 
     }
+    /**
+     * Genera el siguiente ID disponible.
+     *
+     * @return siguiente ID consecutivo.
+     */
+    public int generarId() {
+
+        // Obtener todos los permisos registrados.
+        List<Permiso> lista = leerTodos();
+
+        // Si aún no existen registros.
+        if (lista.isEmpty()) {
+
+            return 1;
+
+        }
+
+        // Buscar el mayor ID.
+        int mayorId = 0;
+
+        for (Permiso permiso : lista) {
+
+            if (permiso.getIdPermiso() > mayorId) {
+
+                mayorId = permiso.getIdPermiso();
+
+            }
+
+        }
+
+        // Retornar el siguiente disponible.
+        return mayorId + 1;
+
+    }
 
 }
